@@ -12,9 +12,12 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     player = Player(x= SCREEN_WIDTH/2,y= SCREEN_HEIGHT /2)
     clock = pygame.time.Clock()
-    updatable.add(player,Asteroid)
-    drawable.add(player,Asteroid)
-    asteroids.add(Asteroid)
+
+    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    asteroid_field = AsteroidField()
+
     dt = 0
 
     while True:
@@ -24,7 +27,9 @@ def main():
         dt = clock.tick(60) / 1000
         for player in updatable:
             player.update(dt)
+
         screen.fill("black")
+
         for player in drawable():
             player.draw(screen)
         pygame.display.flip()
