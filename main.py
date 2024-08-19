@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import * 
 from player import Player
@@ -27,13 +28,16 @@ def main():
             if event.type == pygame.QUIT:
                 return
         dt = clock.tick(60) / 1000
-        for player in updatable:
-            player.update(dt)
-
+        for playr in updatable:
+            playr.update(dt)
+        for asteroid in asteroids:
+            if asteroid.check_collision(player):
+                print("Game over!")
+                sys.exit()
         screen.fill("black")
 
-        for player in drawable:
-            player.draw(screen)
+        for playr in drawable:
+            playr.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
