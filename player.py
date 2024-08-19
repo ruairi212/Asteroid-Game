@@ -5,9 +5,7 @@ from constants import *
 class Player(CircleShape):
     def __init__(self,x,y):
         super().__init__(x,y,PLAYER_RADIUS)
-        self.x = x
-        self.y = y
-        self.position = pygame.math.Vector2(self.x,self.y)
+        self.position = pygame.Vector2(x,y)
         self.rotation = 0
 
     

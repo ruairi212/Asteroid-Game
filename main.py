@@ -10,7 +10,9 @@ def main():
     asteroids = pygame.sprite.Group()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-    player = Player(x= SCREEN_WIDTH/2,y= SCREEN_HEIGHT /2)
+    player = Player(x=SCREEN_WIDTH / 2, y=SCREEN_HEIGHT / 2)
+    updatable.add(player)
+    drawable.add(player)
     clock = pygame.time.Clock()
 
     Player.containers = (updatable, drawable)
